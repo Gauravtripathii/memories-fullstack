@@ -5,7 +5,11 @@ import FileBase from "react-file-base64";
 
 import useStyles from "./styles";
 
+import { useDispatch } from "react-redux";
+import { createPost } from "../../actions/posts";
+
 const Form = () => {
+  const dispatch = useDispatch();
   const classes = useStyles();
 
   const [postData, setPostData] = useState({
@@ -16,7 +20,10 @@ const Form = () => {
     selectedFile: "",
   });
 
-  const handleSubmit = () => {};
+  const handleSubmit = (event) => {
+    event.preventDefault();
+    dispatch(createPost(postData));
+  };
   const clear = () => {};
 
   return (
